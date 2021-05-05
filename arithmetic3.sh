@@ -12,4 +12,8 @@ echo $operation2
 echo $operation3
 echo $operation4
 dictionary=(["opn1"]="$operation1" ["opn2"]="$operation2" ["opn3"]="$operation3" ["opn4"]="$operation4")
-echo ${dictionary[@]}
+echo "dictionary keys " ${!dictionary[@]}
+echo "dictionary values " ${dictionary[@]}
+declare -a array
+array=${dictionary[@]}
+echo "array values " ${array[@]}
