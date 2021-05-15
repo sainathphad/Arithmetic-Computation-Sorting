@@ -11,9 +11,30 @@ echo $operation1
 echo $operation2
 echo $operation3
 echo $operation4
-dictionary=(["opn1"]="$operation1" ["opn2"]="$operation2" ["opn3"]="$operation3" ["opn4"]="$operation4")
+dictionary=(["0"]="$operation1" ["1"]="$operation2" ["2"]="$operation3" ["3"]="$operation4")
 echo "dictionary keys " ${!dictionary[@]}
 echo "dictionary values " ${dictionary[@]}
 declare -a array
-array=${dictionary[@]}
+for (( i=0; i<4; i++ ))
+do
+	array[i]=${dictionary[$i]}
+done
 echo "array values " ${array[@]}
+function Array_InDescending_Order(){
+	for (( i=0; i<4; i++ ))
+	do
+		for (( j=0; j<4-1-i; j++ ))
+		do
+			if [ ${array[j]} -lt ${array[$((j+1))]} ]
+			then
+				temp=${array[j]}
+				array[j]=${array[$((j+1))]}
+				array[j+1]=$temp
+			fi
+		done
+	done
+			echo ${array[@]}
+}
+result=$( Array_InDescending_Order ${array[@]} )
+echo "Descending order is " $result
+
