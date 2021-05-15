@@ -38,3 +38,20 @@ function Array_InDescending_Order(){
 result=$( Array_InDescending_Order ${array[@]} )
 echo "Descending order is " $result
 
+function Array_InAscending_Order(){
+        for (( i=0; i<4; i++ ))
+        do
+                for (( j=0; j<4-1-i; j++ ))
+                do
+                        if [ ${array[j]} -gt ${array[$((j+1))]} ]
+                        then
+                                temp=${array[j]}
+                                array[j]=${array[$((j+1))]}
+                                array[j+1]=$temp
+                        fi
+                done
+        done
+                        echo ${array[@]}
+}
+result1=$( Array_InAscending_Order ${array[@]} )
+echo "Ascending order is " $result1
